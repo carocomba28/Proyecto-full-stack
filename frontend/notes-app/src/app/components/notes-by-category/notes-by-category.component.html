@@ -1,0 +1,50 @@
+<app-navbar></app-navbar>
+<h1 class="title mb-3">Notas por categoría</h1>
+<form [formGroup]="categoryForm">
+    <div class="form-group mb-3">
+        <div class="row justify-content-center">
+            <div class="col-4">
+                <label for="category" class="form-label mb-3"><strong>Categoría</strong></label>
+                <input type="text" class="form-control mb-3" formControlName="category" />
+                <div class="alert alert-danger mt-2"
+                    [hidden]="categoryForm.controls['category'].valid || !categoryForm.controls['category'].touched">
+                    <span
+                        *ngIf="categoryForm.controls['category'].getError('required') && categoryForm.controls['category'].touched">
+                        Ingrese una categoría para buscar.
+                    </span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="text-center">
+        <button type="submit" class="btn btn-dark" (click)="getNotesByCategory()">Buscar</button>
+    </div>
+</form>
+
+<div class="cards">
+    <div class="row">
+        <div class="col-md-3 d-flex" *ngFor="let note of notes">
+            <div class="card mb-4" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">{{ note.title }}</h5>
+                    <p class="card-text">{{ note.description }}</p>
+                    <p class="card-text"> <strong>Categoría:</strong> {{ note.category }}</p>
+                    <p class="card-text archived">{{ note.archived ? 'Archivada' : 'Activa' }}</p>
+                    <div class="d-flex justify-content-between">
+                        <button class="btn btn-danger" (click)="deleteNote(note.id)" title="Eliminar">
+                            <i class="fas fa-trash-alt"></i>
+                        </button>
+                        <button class="btn btn-primary" [routerLink]="['/update-note', note.id]" title="Editar">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                        <button class="btn btn-secondary" (click)="archivedUnarchived(note.id)">
+                            <i [class]="note.archived ? 'fas fa-archive' : 'fas fa-archive'"></i>
+                            {{ note.archived ? 'Desarchivar' : 'Archivar' }}
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

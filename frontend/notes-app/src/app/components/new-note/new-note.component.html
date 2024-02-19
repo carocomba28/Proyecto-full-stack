@@ -1,0 +1,44 @@
+<app-navbar></app-navbar>
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <h1 class="title">Crear nueva nota</h1>
+        <form [formGroup]="newNoteForm" (ngSubmit)="onSubmit()">
+            <div class="form-group mb-3">
+                <label for="title" class="form-label mb-3"><strong>Título</strong></label>
+                <input type="text" class="form-control" formControlName="title" />
+                <div class="alert alert-danger mt-2"
+                    [hidden]="newNoteForm.controls['title'].valid || !newNoteForm.controls['title'].touched">
+                    <span
+                        *ngIf="newNoteForm.controls['title'].getError('required') && newNoteForm.controls['title'].touched">
+                        Ingrese un título para la nota.
+                    </span>
+                </div>
+            </div>
+            <div class="form-group mb-3">
+                <label for="description" class="form-label mb-3"><strong>Descripción</strong></label>
+                <textarea class="form-control mb-3" formControlName="description"></textarea>
+                <div class="alert alert-danger mt-2"
+                    [hidden]="newNoteForm.controls['description'].valid || !newNoteForm.controls['description'].touched">
+                    <span
+                        *ngIf="newNoteForm.controls['description'].getError('required') && newNoteForm.controls['description'].touched">
+                        Ingrese una descripción para la nota.
+                    </span>
+                </div>
+            </div>
+            <div class="form-group mb-3">
+                <label for="category" class="form-label mb-3"><strong>Categoría</strong></label>
+                <input type="text" class="form-control mb-3" formControlName="category" />
+                <div class="alert alert-danger mt-2"
+                    [hidden]="newNoteForm.controls['category'].valid || !newNoteForm.controls['category'].touched">
+                    <span
+                        *ngIf="newNoteForm.controls['category'].getError('required') && newNoteForm.controls['category'].touched">
+                        Ingrese una categoría para la nota.
+                    </span>
+                </div>
+            </div>
+            <div class="text-center">
+                <button type="submit" class="btn btn-dark">Guardar</button>
+            </div>
+        </form>
+    </div>
+</div>

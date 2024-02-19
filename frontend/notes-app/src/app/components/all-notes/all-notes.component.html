@@ -1,0 +1,44 @@
+<app-navbar></app-navbar>
+<h1 class="title">Notas</h1>
+<div class="cards">
+	<div class="row">
+		<div class="col-md-3 d-flex" *ngFor="let note of notes">
+			<div class="card mb-4" style="width: 18rem;">
+				<div class="card-body">
+					<h5 class="card-title">{{ note.title }}</h5>
+					<p class="card-text">{{ note.description }}</p>
+					<p class="card-text"> <strong>Categoría:</strong> {{ note.category }}</p>
+					<p class="card-text archived" [ngClass]="{ 'active': !note.archived }">
+						{{ note.archived ? 'Archivada' : 'Activa' }}
+					  </p>
+					<div class="d-flex justify-content-between">
+						<button class="btn btn-danger" (click)="deleteNote(note.id)" title="Eliminar">
+							<i class="fas fa-trash-alt"></i>
+						</button>
+						<button class="btn btn-primary" [routerLink]="['/update-note', note.id]" title="Editar">
+							<i class="fas fa-edit"></i>
+						</button>
+						<button class="btn btn-secondary" (click)="archivedUnarchived(note.id)">
+							<i [class]="note.archived ? 'fas fa-archive' : 'fas fa-archive'"></i>
+							{{ note.archived ? 'Desarchivar' : 'Archivar' }}
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="botones">
+	<div class="row justify-content-center">
+		<div class="col-2">
+			<button type="button" class="btn btn-warning" (click)="listArchivedNotes()">Mostrar archivadas</button>
+		</div>
+		<div class="col-2">
+			<button type="button" class="btn btn-warning" (click)="listUnarchivedNotes()">Mostrar activas</button>
+		</div>
+		<div class="col-2">
+			<button type="button" class="btn btn-warning" (click)="listAllNotes()">Mostrar todas</button>
+		</div>
+	</div>
+</div>

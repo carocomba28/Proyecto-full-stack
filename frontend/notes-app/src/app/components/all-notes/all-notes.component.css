@@ -1,0 +1,31 @@
+.card-title {
+    text-align: center;
+    font-weight: bold;
+}
+
+.archived {
+    text-align: center;
+    color: gray;
+}
+
+.active {
+    color: rgb(115, 174, 115);
+}
+
+.title {
+    text-align: center;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+.cards {
+    margin-top: 50px;
+}
+
+button {
+    margin: 3px;
+}
+
+.botones {
+    margin-bottom: 10px;
+}

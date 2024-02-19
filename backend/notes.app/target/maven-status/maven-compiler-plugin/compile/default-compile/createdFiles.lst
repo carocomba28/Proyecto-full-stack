@@ -1,0 +1,9 @@
+com\gestionnotas\notes\app\service\ServiceNoteImpl\ServiceNoteImpl.class
+com\gestionnotas\notes\app\entities\NoteEntity.class
+com\gestionnotas\notes\app\configs\SpringDocConfig.class
+com\gestionnotas\notes\app\service\ServiceNote.class
+com\gestionnotas\notes\app\Application.class
+com\gestionnotas\notes\app\configs\MappersConfig.class
+com\gestionnotas\notes\app\controllers\ControllerNotes.class
+com\gestionnotas\notes\app\repositories\jpa\JpaRepositoryNote.class
+com\gestionnotas\notes\app\models\Note.class
