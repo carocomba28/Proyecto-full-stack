@@ -7,49 +7,43 @@ import { Note } from '../models/Note';
   providedIn: 'root',
 })
 export class NotesService {
+  private baseUrl: string = 'http://localhost:8080/notes/';
+
   constructor(private http: HttpClient) {}
+
   getNotes(): Observable<Note[]> {
-    const url = 'http://localhost:8080/notes/getAllNotes';
-    return this.http.get<Note[]>(url);
+    return this.http.get<Note[]>(this.baseUrl + 'getAllNotes');
   }
 
   deleteNote(id: number): Observable<Note> {
-    const url = 'http://localhost:8080/notes/deleteNote?id=' + id;
-    return this.http.delete<Note>(url);
+    return this.http.delete<Note>(`${this.baseUrl}deleteNote?id=${id}`);
   }
 
   updateNote(note: Note): Observable<Note> {
-    const url = 'http://localhost:8080/notes/updateNote?id=' + note.id;
-    return this.http.put<Note>(url, note);
+    return this.http.put<Note>(`${this.baseUrl}updateNote?id=${note.id}`, note);
   }
 
   getNote(id: number) {
-    const url = 'http://localhost:8080/notes/getNoteById?id=' + id;
-    return this.http.get<Note>(url);
+    return this.http.get<Note>(`${this.baseUrl}getNoteById?id=${id}`);
   }
 
   archiveOrUnarchiveNote(id: number): Observable<Note> {
-    const url = 'http://localhost:8080/notes/archiveNote?id=' + id;
-    return this.http.put<Note>(url, null);
+    return this.http.put<Note>(`${this.baseUrl}archiveNote?id=${id}`, null);
   }
 
   saveNote(note: Note): Observable<Note> {
-    const url = 'http://localhost:8080/notes/saveNote';
-    return this.http.post<Note>(url, note);
+    return this.http.post<Note>(`${this.baseUrl}saveNote`, note);
   }
 
   getArchivedNotes(): Observable<Note[]> {
-    const url = 'http://localhost:8080/notes/listNotes?archived=true';
-    return this.http.get<Note[]>(url);
+    return this.http.get<Note[]>(`${this.baseUrl}listNotes?archived=true`);
   }
 
   getUnarchivedNotes(): Observable<Note[]> {
-    const url = 'http://localhost:8080/notes/listNotes?archived=false';
-    return this.http.get<Note[]>(url);
+    return this.http.get<Note[]>(`${this.baseUrl}listNotes?archived=false`);
   }
 
   getNotesByCategory(category: string): Observable<Note[]> {
-    const url = 'http://localhost:8080/notes/getNotesByCategory?category=' + category;
-    return this.http.get<Note[]>(url);
+    return this.http.get<Note[]>(`${this.baseUrl}getNotesByCategory?category=${category}`);
   }
 }
